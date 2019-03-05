@@ -28,7 +28,7 @@
                 </div>
                 @endif
 
-                <form method="POST" 
+                <form method="POST" id="frmActualizarPerfil"
                 action="{{route('perfil.update',$usuario->id)}}" 
                 enctype="multipart/form-data"
                 >
@@ -51,16 +51,17 @@
                         <img src="/storage/{{$usuario->foto}}" style="width: 400px; height: auto;" class="img-responsive">
                         @endif
                     </div>
-                    <div class="form-group">
+                    <div class="form-group grupo-password">
                         <label>Contraseña</label>
-                        <input name="contraseña" class="form-control" type="password">
+                        <input name="contraseña" class="form-control" type="password" id="txtPassword">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group grupo-password">
                         <label>Confirmar Contraseña</label>
-                        <input class="form-control" type="password">
+                        <input class="form-control" type="password" id="txtPasswordConfirm">
+                        <span class = "help-block" id="mensajePasswordNoCoincide" > Constraseñas no coinciden </span>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" class="btn btn-primary" id="btnSubmit">Guardar Cambios</button>
                     </div>
             </form>
             </div>
@@ -68,4 +69,32 @@
     </div>
 </div>
 </div>
+@endsection
+
+@section('scripts')
+
+<script>
+
+    function doClickActualizar(event){
+        if($('#txtPassword').val() == $('#txtPasswordConfirm').val())
+        {
+            //Envio el formulario
+            $("#frmActualizarPerfil").submit();
+        }else {
+            //Muestro los errores
+            $("#mensajePasswordNoCoincide").show();
+            $(".grupo-password").addClass('has-error');
+        }
+    }
+
+    $(function ()
+    {
+        $("#mensajePasswordNoCoincide").hide();
+        
+        $("#btnSubmit").click(doClickActualizar);
+        
+
+    });
+</script>
+
 @endsection
