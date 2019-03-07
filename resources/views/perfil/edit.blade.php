@@ -87,13 +87,15 @@
         }
     }
 
+    $('.grupo-password').focus(function(){
+        $('#mensajePasswordNoCoincide').hide();
+        $('.grupo-password').removeClass('has-error');
+    });
+
     $(function ()
     {
         $("#mensajePasswordNoCoincide").hide();
-        
         $("#btnSubmit").click(doClickActualizar);
-        
-
     });
 </script>
 

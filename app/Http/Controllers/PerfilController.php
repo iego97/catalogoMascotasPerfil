@@ -39,6 +39,13 @@ class PerfilController extends Controller
                 $usuario->foto = $nombreArchivo;
             }
 
+            if($request->input('password') 
+            && $request->input('password') != ''){
+                
+                $usuario->password = bcrypt($request->input('passowrd'));
+
+            }
+
             if($usuario->save()){
                 return redirect()->route('perfil.edit')->with('exito','Perfil actualizado');
             }

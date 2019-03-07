@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+//localhost:8000/api/estados/1
+Route::get('/estados/{pais}','ServiciosController@estados')->name('api.estados.lista');

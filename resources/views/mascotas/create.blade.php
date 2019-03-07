@@ -27,6 +27,28 @@
             <label>Fecha de nacimiento</label>
             <input class="form-control" type="date" name="nacimiento" required>
         </div>
+        
+
+        <div class="form-group">
+            <label class="control-label">Paìs</label>
+            <select class="form-control" name="pais" required>
+                <option selected disabled value=""> Elige un paìs </option>
+                @foreach($paises as $pais)
+                    <option value="{{$pais->id}}">{{$pais->nombre}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Estado</label>
+            <select class="form-control" name="estado" required>
+                <option selected disbaled value=""> Elige un estado </option>
+                
+                
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-default">Crear nueva mascota </button>
+
     </form>
 @endsection

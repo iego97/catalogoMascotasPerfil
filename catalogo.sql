@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 28, 2019 at 07:42 PM
+-- Generation Time: Mar 07, 2019 at 12:54 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -34,6 +34,29 @@ INSERT INTO `especies` (`ID`, `Nombre`) VALUES
 (2, 'Perro'),
 (3, 'Hamster'),
 (4, 'Perico');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `estados`
+--
+
+CREATE TABLE `estados` (
+  `id` int(11) NOT NULL,
+  `id_pais` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `estados`
+--
+
+INSERT INTO `estados` (`id`, `id_pais`, `nombre`) VALUES
+(1, 1, 'Sonora'),
+(2, 1, 'Queretaro'),
+(3, 1, 'Jalisco'),
+(4, 2, 'Arizona'),
+(5, 2, 'California');
 
 -- --------------------------------------------------------
 
@@ -84,6 +107,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `paises`
+--
+
+CREATE TABLE `paises` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `paises`
+--
+
+INSERT INTO `paises` (`id`, `nombre`) VALUES
+(1, 'Mexico'),
+(2, 'Estados Unidos');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `password_resets`
 --
 
@@ -129,6 +171,13 @@ ALTER TABLE `especies`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_pais` (`id_pais`);
+
+--
 -- Indexes for table `mascotas`
 --
 ALTER TABLE `mascotas`
@@ -139,6 +188,12 @@ ALTER TABLE `mascotas`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `paises`
+--
+ALTER TABLE `paises`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -165,6 +220,12 @@ ALTER TABLE `especies`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `estados`
+--
+ALTER TABLE `estados`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `mascotas`
 --
 ALTER TABLE `mascotas`
@@ -177,6 +238,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `paises`
+--
+ALTER TABLE `paises`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -185,6 +252,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `estados`
+--
+ALTER TABLE `estados`
+  ADD CONSTRAINT `estados_ibfk_1` FOREIGN KEY (`id_pais`) REFERENCES `paises` (`id`);
 
 --
 -- Constraints for table `mascotas`

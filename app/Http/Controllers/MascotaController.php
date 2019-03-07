@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mascota;
 use App\Especie;
-
+use App\Pais;
+use App\Estado;
 class MascotaController extends Controller
 {
     public function __construct()
@@ -36,9 +37,11 @@ class MascotaController extends Controller
     public function create()
     {
         $especies = Especie::all();
+        $paises = Pais::all();
 
         $argumentos = array();
         $argumentos['especies'] = $especies;
+        $argumentos['paises'] = $paises;
         return view('mascotas.create', $argumentos);
     }
 
